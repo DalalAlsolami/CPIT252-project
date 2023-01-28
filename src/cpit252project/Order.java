@@ -73,8 +73,17 @@ public class Order {
     }
 
 //METHODS: finish the order to go to payment
-    public void finish() {
+        public void finish() {
         this.payment.printInvoice(products, productsQuantity);
+        System.out.println("Order confirmed!");
+    }
+    public void DeleteOrder() {
+        for (int i = 0; i < this.products.size(); i++) {
+            this.products.get(i).setQuantity(this.products.get(i).getQuantity()+this.productsQuantity.get(i));
+        }
+        this.products.clear();
+        this.productsQuantity.clear();
+        System.out.println("All items deleted successfully!");
     }
 }
 

@@ -1,17 +1,16 @@
 
 package cpit252project;
 
+//import java.io.File;
+//import java.io.FileNotFoundException;
+//import java.text.ParseException;
+//import java.text.SimpleDateFormat;
+//import java.util.Date;
+//import java.util.Scanner;
+
+
+
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Scanner;
-
-
-
-
-   import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -43,7 +42,7 @@ public class PleaseCookies {
 
         printHead(); //mine to choose if you are 1/admin or 2/customer
         int number = input.nextInt();
-
+        OrderController controller = new OrderController();//invoker
         //choose1 --> Admin
         //---------------------------------------------------------------------------------------
         if (number == 1) {
@@ -121,7 +120,7 @@ public class PleaseCookies {
                         System.out.println("---------------------------------------------------");
 
                         int customerInput = 0;
-                        while (customerInput != 5) {
+                        while (customerInput != 6) {
                             printCustomerHeader();
                             customerInput = input.nextInt();
 
@@ -148,6 +147,8 @@ public class PleaseCookies {
                                 } while (more.equalsIgnoreCase("yes"));
                             } else if (customerInput == 2) { //FINISH ORDER
                                 finish = true;
+//                                controller.setCommand(new OrderCommands(currentCustomer.getNewOrder()));
+//                                controller.ConfirmbuttonPressed();
                                 printPymentMethods();
                                 System.out.print("Please enter payment method: ");
                                 int paymentMethod = input.nextInt();
@@ -180,7 +181,9 @@ public class PleaseCookies {
                                     System.out.print("review: ");
                                     String customerReview = input2.nextLine();
                                 }
-                                currentCustomer.getNewOrder().finish();
+                                controller.setCommand(new OrderCommands(currentCustomer.getNewOrder()));
+                                controller.ConfirmbuttonPressed();
+//                                currentCustomer.getNewOrder().finish();
                                 break;
                             } else if (customerInput == 3) { //SEARCH FOR AN ITEM
                                 System.out.print("Enter item name: ");
@@ -200,8 +203,12 @@ public class PleaseCookies {
                                 }
                             } else if (customerInput == 4) { //SHOW CART
                                 System.out.println(currentCustomer.showCart());
+                            } else if (customerInput == 5) { 
+//                                currentCustomer.getNewOrder().DeleteOrder();
+                                controller.setCommand(new OrderCommands(currentCustomer.getNewOrder()));
+                                controller.CanclebuttonPressed();
                             }
-                        }
+                            }
                         break;
                     }
                 }
@@ -250,10 +257,11 @@ public class PleaseCookies {
         System.out.println("                please cookies system               ");
         System.out.println("---------------------------------------------------");
         System.out.println(" 1) Add item.");
-        System.out.println(" 2) Finish order.");
+        System.out.println(" 2) Confirm order.");
         System.out.println(" 3) Search for an item.");
         System.out.println(" 4) Show cart.");
-        System.out.println(" 5) Exit.");
+        System.out.println(" 5) Cancle.");
+        System.out.println(" 6) Exit.");
         System.out.println("---------------------------------------------------");
         System.out.print(">> ");
     }
