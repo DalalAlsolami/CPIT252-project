@@ -12,16 +12,24 @@ package cpit252project;
  */
 import java.util.ArrayList;
 public class Administrator {
-    private String userName;
-    private String password;
-    private String name;
+    private static Administrator admin = null;
+    private static String userName;
+    private static String password;
+    private static String name;
     static ArrayList<Item> items;
 
-//CONSREUCTOR
-    public Administrator(String userName, String password, String name) {
+// Private CONSREUCTOR to apply singleton patttrens
+    private Administrator(String userName, String password, String name) {
         this.userName = userName;
         this.password = password;
         this.name = name;
+    }
+    
+    public static Administrator getAdmin(String userName, String password, String name){
+        if (admin == null){
+            admin = new Administrator( userName,  password,  name);
+        }
+            return admin;
     }
 
 //SETTERS AND GETTERS

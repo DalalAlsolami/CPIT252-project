@@ -1,0 +1,4 @@
+cookies 5 50
+stuffed_cookies 7 100
+cup_cookies 10 20
+tart_cookies 8 8
