@@ -91,6 +91,7 @@ public class Customer {
         String cartItems = "";
         if (newOrder != null) {
             cartItems += "Number of added items: " + newOrder.getProducts().size() + "\n";
+            cartItems += "Item name || Price || Quantity \n";
             for (int i = 0; i < newOrder.getProducts().size(); i++) {
                 cartItems += newOrder.getProducts().get(i).getItemName() + " || " + newOrder.getProducts().get(i).getPrice() + " || " + newOrder.getProductsQuantity().get(i) + "\n";
             }

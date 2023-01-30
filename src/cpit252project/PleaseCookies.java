@@ -147,14 +147,13 @@ public class PleaseCookies {
                                 } while (more.equalsIgnoreCase("yes"));
                             } else if (customerInput == 2) { //FINISH ORDER
                                 finish = true;
-//                                controller.setCommand(new OrderCommands(currentCustomer.getNewOrder()));
-//                                controller.ConfirmbuttonPressed();
+
                                 printPymentMethods();
                                 System.out.print("Please enter payment method: ");
                                 int paymentMethod = input.nextInt();
                                 if (paymentMethod == 1) { //Cridet card
 
-                                    currentCustomer.getNewOrder().setPayment(new Payment("Credit Card"));
+                                    currentCustomer.getNewOrder().getPaymentMethod("Credit");
                                     boolean valid = true;
                                     do {
                                         System.out.print("Please enter card number: ");
@@ -164,7 +163,8 @@ public class PleaseCookies {
                                         System.out.print("Please enter expiry date(MM/yyyy): ");
                                         String ExpiryDate = input.next();
                                         Date cardExpiryDate = new SimpleDateFormat("MM/yyyy").parse(ExpiryDate);
-                                        valid = currentCustomer.getNewOrder().getPayment().cardInformation(cardNumber, cardCVV, cardExpiryDate);
+
+                                         valid = currentCustomer.getNewOrder().getPayment().cardInformation(cardNumber, cardCVV, cardExpiryDate);
                                         if (valid) {
                                             System.out.println("valid card.");
                                         } else {
@@ -174,7 +174,7 @@ public class PleaseCookies {
 
                                     } while (!valid);
                                 } else if (paymentMethod == 2) { //Cash
-                                    currentCustomer.getNewOrder().setPayment(new Payment("Cash"));
+                                    currentCustomer.getNewOrder().getPaymentMethod("Cash");
                                 }
                                 System.out.print("Can you share your opinion about our cookies?(yes or no)");
                                 if (input.next().equalsIgnoreCase("yes")) {
@@ -183,7 +183,7 @@ public class PleaseCookies {
                                 }
                                 controller.setCommand(new OrderCommands(currentCustomer.getNewOrder()));
                                 controller.ConfirmbuttonPressed();
-//                                currentCustomer.getNewOrder().finish();
+
                                 break;
                             } else if (customerInput == 3) { //SEARCH FOR AN ITEM
                                 System.out.print("Enter item name: ");
@@ -204,7 +204,6 @@ public class PleaseCookies {
                             } else if (customerInput == 4) { //SHOW CART
                                 System.out.println(currentCustomer.showCart());
                             } else if (customerInput == 5) { 
-//                                currentCustomer.getNewOrder().DeleteOrder();
                                 controller.setCommand(new OrderCommands(currentCustomer.getNewOrder()));
                                 controller.CanclebuttonPressed();
                             }

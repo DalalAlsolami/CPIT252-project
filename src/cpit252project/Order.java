@@ -10,7 +10,6 @@ package cpit252project;
  *
  * @author asus
  */
-import cpit252project.Payment;
 import java.util.ArrayList;
 public class Order {
     ArrayList<Item> products = new ArrayList<>();
@@ -73,9 +72,28 @@ public class Order {
     }
 
 //METHODS: finish the order to go to payment
+        public Payment getPaymentMethod(String kindOfPayment) {
+        //this.payment.printInvoice(products, productsQuantity);
+        if(kindOfPayment.equalsIgnoreCase("Cash")){
+           System.out.println("Order confirmed!");
+           Payment x = new cash();
+           this.setPayment(x);
+           return this.payment;
+            
+        }else if(kindOfPayment.equalsIgnoreCase("Credit")){
+            System.out.println("Order confirmed!");
+            Payment x = new creditCard();
+            this.setPayment(x);
+            return this.payment;
+            
+        }else{
+            System.out.println("Order confirmed!");
+            return null;
+        }
+    }
         public void finish() {
-        this.payment.printInvoice(products, productsQuantity);
-        System.out.println("Order confirmed!");
+            this.payment.printInvoice(products, productsQuantity);
+            System.out.println("Order confirmed!");
     }
     public void DeleteOrder() {
         for (int i = 0; i < this.products.size(); i++) {
