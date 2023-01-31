@@ -87,7 +87,6 @@ public class Order {
             return this.payment;
             
         }else{
-            System.out.println("Order confirmed!");
             return null;
         }
     }
