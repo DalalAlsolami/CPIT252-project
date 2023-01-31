@@ -71,9 +71,11 @@ public class Order {
         return false;
     }
 
-//METHODS: finish the order to go to payment
+//METHODS: Factory method 
         public Payment getPaymentMethod(String kindOfPayment) {
-        //this.payment.printInvoice(products, productsQuantity);
+            if(kindOfPayment == null){
+                return null;
+            }
         if(kindOfPayment.equalsIgnoreCase("Cash")){
            System.out.println("Order confirmed!");
            Payment x = new cash();
@@ -90,6 +92,7 @@ public class Order {
             return null;
         }
     }
+        //METHODS: finish the order to go to payment
         public void finish() {
             this.payment.printInvoice(products, productsQuantity);
             System.out.println("Order confirmed!");
